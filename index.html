@@ -1,10 +1,740 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Panthers DBL</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allen Chen – CV / 陈艾伦 – 简历</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #152340;
+    --navy-mid: #1e3360;
+    --gold: #b8913a;
+    --gold-light: #d4ae6a;
+    --cream: #faf8f4;
+    --parchment: #f0ece3;
+    --text: #2a2a2a;
+    --text-light: #5a5a5a;
+    --border: #ddd8cc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── LANGUAGE SWITCHER ── */
+  .lang-bar {
+    background: var(--navy);
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .lang-bar-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(180,145,58,0.4);
+    border-radius: 100px;
+    padding: 4px 6px;
+  }
+  .lang-btn {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    padding: 5px 20px;
+    border-radius: 100px;
+    transition: all 0.25s ease;
+    letter-spacing: 0.04em;
+  }
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.9); }
+
+  /* ── LANGUAGE VISIBILITY ── */
+  [lang="en"] .zh, [lang="en"] .zh-only { display: none; }
+  [lang="zh"] .en, [lang="zh"] .en-only { display: none; }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 900px;
+    margin: 32px auto 48px;
+    background: var(--cream);
+    box-shadow: 0 8px 60px rgba(21,35,64,0.18);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 52px 60px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(180,145,58,0.25);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -10px; right: -10px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(180,145,58,0.15);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .name-block h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 48px;
+    color: #fff;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+  .name-block .name-zh {
+    font-size: 22px;
+    color: rgba(255,255,255,0.55);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    margin-top: 4px;
+  }
+  .name-block .tagline {
+    font-weight: 300;
+    font-size: 12.5px;
+    color: var(--gold-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .name-block .tagline-zh {
+    font-size: 12px;
+    color: rgba(212,174,106,0.75);
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+  .contact-block { text-align: right; flex-shrink: 0; }
+  .contact-block p { font-size: 12.5px; color: rgba(255,255,255,0.72); line-height: 1.9; }
+  .contact-block a { color: var(--gold-light); text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+  .gold-rule { width: 60px; height: 2px; background: var(--gold); margin-top: 28px; }
+
+  /* ── BODY LAYOUT ── */
+  .body { display: grid; grid-template-columns: 220px 1fr; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { background: var(--navy-mid); padding: 44px 28px; }
+  .sidebar-section { margin-bottom: 36px; }
+  .sidebar-section:last-child { margin-bottom: 0; }
+
+  .sidebar-title {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(180,145,58,0.3);
+    line-height: 1.8;
+  }
+  .sidebar-section p { font-size: 12.5px; color: rgba(255,255,255,0.75); line-height: 1.75; }
+
+  .role-pill {
+    display: block;
+    background: rgba(180,145,58,0.15);
+    border: 1px solid rgba(180,145,58,0.35);
+    border-radius: 3px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+    color: var(--gold-light);
+    margin-bottom: 7px;
+    line-height: 1.4;
+  }
+  .edu-item { margin-bottom: 16px; }
+  .edu-item .inst { font-size: 12px; font-weight: 600; color: #fff; }
+  .edu-item .degree { font-size: 11.5px; color: rgba(255,255,255,0.65); line-height: 1.5; margin-top: 2px; }
+  .edu-item .year { font-size: 10.5px; color: var(--gold); margin-top: 2px; }
+  .skill-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    padding: 4px 8px;
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.72);
+    margin: 0 4px 6px 0;
+    line-height: 1.4;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main { padding: 44px 48px; }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+  .section-heading .zh { font-size: 16px; color: var(--text-light); font-family: 'DM Sans', sans-serif; }
+  .section-rule { height: 1.5px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 22px; border: none; }
+
+  .profile-text {
+    border-left: 2.5px solid var(--gold);
+    padding-left: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-light);
+    line-height: 1.85;
+    margin-bottom: 6px;
+  }
+  .profile-text-zh {
+    border-left: 2.5px solid var(--gold);
+    padding-left: 18px;
+    font-size: 13.5px;
+    color: var(--text-light);
+    line-height: 2;
+    margin-bottom: 32px;
+  }
+
+  .exp-entry { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .exp-entry:last-of-type { border-bottom: none; }
+
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3px; gap: 12px; }
+  .exp-role { font-weight: 600; font-size: 14.5px; color: var(--navy); line-height: 1.3; }
+  .exp-role .zh { font-size: 13px; font-weight: 500; color: var(--text-light); display: block; margin-top: 1px; }
+  .exp-dates { font-size: 11.5px; color: var(--gold); font-weight: 500; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .exp-org { font-size: 13px; color: var(--text-light); font-style: italic; margin-bottom: 10px; }
+  .exp-note { font-size: 12px; color: var(--text-light); margin-bottom: 8px; font-style: italic; }
+
+  .sub-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--navy); margin: 10px 0 5px; opacity: 0.6;
+  }
+  .sub-label .zh { text-transform: none; letter-spacing: 0.04em; font-size: 11px; }
+
+  ul.exp-list { padding-left: 16px; margin-bottom: 6px; }
+  ul.exp-list li { font-size: 13px; color: var(--text-light); line-height: 1.75; margin-bottom: 2px; }
+
+  .impact-box {
+    background: rgba(21,35,64,0.04);
+    border-left: 2px solid var(--gold);
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 0 3px 3px 0;
+  }
+  .impact-box .sub-label { margin-top: 0; color: var(--navy); }
+  .impact-box ul.exp-list li { color: var(--navy); font-weight: 500; font-size: 12.5px; }
+
+  .early-career { background: var(--parchment); border-radius: 4px; padding: 14px 18px; margin-top: 4px; }
+  .early-career p { font-size: 12.5px; color: var(--text-light); line-height: 1.9; }
+
+  .cv-footer { background: var(--navy); padding: 18px 60px; text-align: center; }
+  .cv-footer p { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
+
+  @media print { body { background: white; } .page { margin:0; box-shadow:none; max-width:100%; } .lang-bar { display:none; } }
+  @media (max-width: 680px) {
+    .body { grid-template-columns: 1fr; }
+    .sidebar { padding: 28px 24px; }
+    .header { padding: 36px 24px 28px; }
+    .header-top { flex-direction: column; align-items: flex-start; }
+    .contact-block { text-align: left; }
+    .main { padding: 28px 24px; }
+    .cv-footer { padding: 14px 24px; }
+    .name-block h1 { font-size: 36px; }
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome to Panthers DBL</h1>
-    <!-- Your content here -->
+
+<!-- ═══════════ LANGUAGE SWITCHER ═══════════ -->
+<div class="lang-bar">
+  <div class="lang-bar-inner">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+  </div>
+</div>
+
+<div class="page" id="cv-root" lang="en">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="header">
+    <div class="header-top">
+      <div class="name-block">
+        <h1>Allen Chen</h1>
+        <p class="name-zh zh">陈艾伦</p>
+        <p class="tagline en">PE Teacher &nbsp;·&nbsp; Athletic Director &nbsp;·&nbsp; Student Activities Leader</p>
+        <p class="tagline-zh zh">体育教师 &nbsp;·&nbsp; 体育主任 &nbsp;·&nbsp; 学生活动负责人</p>
+        <div class="gold-rule"></div>
+      </div>
+      <div class="contact-block">
+        <p class="en">Beijing, China</p>
+        <p class="zh">中国，北京</p>
+        <p><a href="mailto:allenchen_ac@qq.com">allenchen_ac@qq.com</a></p>
+        <p>+86 158 1137 6447</p>
+        <p class="en">Mandarin (Native) &nbsp;|&nbsp; English (Professional)</p>
+        <p class="zh">普通话（母语）&nbsp;|&nbsp; 英语（专业水平）</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="en">Seeking Roles</span>
+          <span class="zh">求职方向</span>
+        </div>
+        <span class="role-pill en">Physical Education Teacher</span>
+        <span class="role-pill zh">体育教师</span>
+        <span class="role-pill en">Athletic Director / Director of Activities</span>
+        <span class="role-pill zh">体育主任 / 活动主任</span>
+        <span class="role-pill en">Student Activities Coordinator</span>
+        <span class="role-pill zh">学生活动协调员</span>
+        <span class="role-pill en">Asst. Director of Student Life</span>
+        <span class="role-pill zh">学生生活副主任</span>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="en">Education</span>
+          <span class="zh">教育背景</span>
+        </div>
+        <div class="edu-item">
+          <div class="inst en">Minzu University of China</div>
+          <div class="inst zh">中央民族大学</div>
+          <div class="degree en">BSc Applied Physics</div>
+          <div class="degree zh">应用物理学学士</div>
+          <div class="year en">2009 &nbsp;·&nbsp; Beijing</div>
+          <div class="year zh">2009 &nbsp;·&nbsp; 北京</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="en">Certifications</span>
+          <span class="zh">资格证书</span>
+        </div>
+        <div class="edu-item">
+          <div class="inst en">IB MYP PHE – Category 1</div>
+          <div class="inst zh">IB MYP 体育与健康教育 – 第一类别</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="inst en">Chinese Teaching Certificate</div>
+          <div class="inst zh">中国教师资格证</div>
+          <div class="degree en">Primary PE</div>
+          <div class="degree zh">小学体育</div>
+          <div class="year">2022</div>
+        </div>
+        <div class="edu-item">
+          <div class="inst en">CBA Coach Certification</div>
+          <div class="inst zh">中国篮球协会教练员证书</div>
+          <div class="degree en">Middle-Level</div>
+          <div class="degree zh">中级</div>
+          <div class="year">2016</div>
+        </div>
+        <div class="edu-item">
+          <div class="inst en">Business Language Translation</div>
+          <div class="inst zh">商务语言翻译证书</div>
+          <div class="degree en">Chinese–English</div>
+          <div class="degree zh">中英互译</div>
+          <div class="year">2008</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="en">Core Competencies</span>
+          <span class="zh">核心能力</span>
+        </div>
+        <span class="skill-tag en">MYP PHE Curriculum &amp; Assessment</span>
+        <span class="skill-tag zh">IB MYP 体育课程与评估</span>
+        <span class="skill-tag en">Athletic Dept. Leadership</span>
+        <span class="skill-tag zh">体育部门管理领导</span>
+        <span class="skill-tag en">ASA Systems &amp; Vendor Mgmt</span>
+        <span class="skill-tag zh">课外活动体系管理</span>
+        <span class="skill-tag en">Student Leadership Dev.</span>
+        <span class="skill-tag zh">学生领导力培养</span>
+        <span class="skill-tag en">Tournament &amp; Event Ops</span>
+        <span class="skill-tag zh">赛事及活动运营</span>
+        <span class="skill-tag en">Experiential Learning &amp; Camps</span>
+        <span class="skill-tag zh">体验式学习与营地教育</span>
+        <span class="skill-tag en">Risk Mgmt &amp; Parent Comms</span>
+        <span class="skill-tag zh">风险管理与家长沟通</span>
+        <span class="skill-tag en">Youth Basketball (PS–Varsity)</span>
+        <span class="skill-tag zh">青少年篮球培训（小学至高中）</span>
+        <span class="skill-tag en">Cross-Divisional Alignment</span>
+        <span class="skill-tag zh">跨学段课程衔接</span>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="en">References</span>
+          <span class="zh">推荐人</span>
+        </div>
+        <p class="en">Available upon request. Separate reference sheet provided if required.</p>
+        <p class="zh">如需推荐信，可另行提供推荐人信息表。</p>
+      </div>
+
+    </aside>
+
+    <!-- ═══════════ MAIN ═══════════ -->
+    <main class="main">
+
+      <!-- PROFILE -->
+      <h2 class="section-heading">
+        <span class="en">Professional Profile</span>
+        <span class="zh">职业简介</span>
+      </h2>
+      <hr class="section-rule">
+      <p class="profile-text en">
+        Dynamic international school educator with 10+ years of experience spanning MYP Physical &amp; Health Education, K–12 Athletic Direction, and large-scale Student Activities leadership. Proven record building comprehensive athletic programs, directing after-school ecosystems, and fostering student leadership aligned with holistic wellbeing frameworks.
+      </p>
+      <p class="profile-text-zh zh">
+        富有活力的国际学校教育工作者，拥有10余年工作经验，涵盖IB MYP体育与健康教育教学、K-12体育部门管理以及大规模学生活动统筹工作。在构建综合性体育项目、管理课外活动生态体系以及依托全人教育框架培养学生领导力方面成绩卓著。
+      </p>
+
+      <!-- EXPERIENCE -->
+      <h2 class="section-heading">
+        <span class="en">Professional Experience</span>
+        <span class="zh">工作经历</span>
+      </h2>
+      <hr class="section-rule">
+
+      <!-- Daystar -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">MYP Physical &amp; Health Education Teacher</span>
+            <span class="zh">MYP 体育与健康教育教师</span>
+          </div>
+          <div class="exp-dates">Aug 2025 – Present</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Daystar Academy &nbsp;·&nbsp; Beijing</span>
+          <span class="zh">戴星学院 &nbsp;·&nbsp; 北京</span>
+        </div>
+        <div class="exp-note en">Full-time Cover (Sem 1: Grades 6 &amp; 9) &nbsp;|&nbsp; Part-time (Sem 2: Grade 9)</div>
+        <div class="exp-note zh">全职代课（第一学期：六年级和九年级）&nbsp;|&nbsp; 兼职（第二学期：九年级）</div>
+        <ul class="exp-list en">
+          <li>Deliver MYP-aligned PHE curriculum focused on physical literacy, personal fitness, and social-emotional development</li>
+          <li>Design inquiry-based units incorporating skill progression, reflection, and student goal-setting</li>
+          <li>Implement differentiated instruction strategies across mixed-ability groups</li>
+          <li>Align assessment practices with MYP criteria and IB Learner Profile attributes</li>
+          <li>Foster inclusive, high-engagement learning environments</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>讲授符合IB MYP标准的体育与健康教育课程，聚焦体育素养、个人健康与社会情感发展</li>
+          <li>设计基于探究式学习的教学单元，融合技能进阶、反思与学生目标设定</li>
+          <li>针对不同能力水平的混合班级实施差异化教学策略</li>
+          <li>依据MYP评估标准与IB学习者培养目标开展评估工作</li>
+          <li>构建具有包容性、高参与度的学习环境</li>
+        </ul>
+        <div class="impact-box">
+          <div class="sub-label">
+            <span class="en">Key Impact</span>
+            <span class="zh">主要成果</span>
+          </div>
+          <ul class="exp-list en">
+            <li>Strengthened vertical alignment between MS and HS athletic pathways</li>
+            <li>Enhanced student reflection and ownership within skill development</li>
+          </ul>
+          <ul class="exp-list zh">
+            <li>强化了初中与高中体育发展路径的纵向衔接</li>
+            <li>提升了学生在技能发展过程中的自我反思能力与主人翁意识</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Haidian Kaiwen -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">Athletic Director &nbsp;·&nbsp; ASA Coordinator &nbsp;·&nbsp; PE Teacher</span>
+            <span class="zh">体育主任 &nbsp;·&nbsp; 课外活动协调员 &nbsp;·&nbsp; 体育教师</span>
+          </div>
+          <div class="exp-dates">Feb 2024 – Jul 2025</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Haidian Kaiwen Academy &nbsp;·&nbsp; Beijing</span>
+          <span class="zh">海淀凯文学校 &nbsp;·&nbsp; 北京</span>
+        </div>
+        <p class="en" style="font-size:12.5px;color:var(--text-light);margin-bottom:10px;">Directed K–12 athletics and student activities programming while teaching MS and HS PE — a rare triple mandate demonstrating exceptional operational versatility.</p>
+        <p class="zh" style="font-size:12.5px;color:var(--text-light);margin-bottom:10px;">在担任K-12体育教学工作的同时，全面统筹全校学生活动规划与课外活动体系——兼任三职充分展现了出色的综合管理能力。</p>
+
+        <div class="sub-label">
+          <span class="en">Athletic Leadership</span>
+          <span class="zh">体育管理职责</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Oversaw all Primary, MS, and HS athletic teams across K–12</li>
+          <li>Structured competition pathways and inter-school participation (ISAC / ACAMIS)</li>
+          <li>Supervised coaching staff and ensured safeguarding compliance</li>
+          <li>Developed seasonal planning systems and team evaluation frameworks</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>统筹管理全校小学、初中及高中各运动队（K-12）</li>
+          <li>建立竞赛晋级体系，组织学校间联赛参与（ISAC / ACAMIS）</li>
+          <li>督导教练团队工作，确保学生安全保障规范的落实</li>
+          <li>制定赛季规划制度与球队评估框架</li>
+        </ul>
+
+        <div class="sub-label">
+          <span class="en">ASA &amp; Activities Administration</span>
+          <span class="zh">课外活动管理职责</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Managed full K–12 ASA ecosystem: vendors, internal faculty, student-led clubs</li>
+          <li>Built registration systems, parent communication pipelines, and evaluation protocols</li>
+          <li>Negotiated and managed vendor partnerships for co-curricular programming</li>
+          <li>Coordinated whole-school field trips and experiential learning programs</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>管理全校K-12课外活动体系，涵盖外部供应商、校内教师及学生社团</li>
+          <li>搭建报名系统、家长沟通渠道及活动评估机制</li>
+          <li>负责课外活动供应商合同谈判与合作关系管理</li>
+          <li>统筹安排全校参观研学与体验式学习项目</li>
+        </ul>
+
+        <div class="sub-label">
+          <span class="en">Teaching</span>
+          <span class="zh">教学职责</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Delivered PE instruction to MS and HS classes alongside full AD responsibilities</li>
+          <li>Integrated athletic programming with curricular learning goals</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>在承担全职体育主任职责的同时，承担初中及高中体育教学工作</li>
+          <li>将竞技体育项目与课程学习目标有机整合</li>
+        </ul>
+
+        <div class="impact-box">
+          <div class="sub-label">
+            <span class="en">Key Impact</span>
+            <span class="zh">主要成果</span>
+          </div>
+          <ul class="exp-list en">
+            <li>Streamlined ASA operations across all school divisions</li>
+            <li>Strengthened alignment between academic calendar and athletics programming</li>
+            <li>Increased student participation and structural clarity in activities</li>
+          </ul>
+          <ul class="exp-list zh">
+            <li>优化了全校各学段课外活动的运营管理流程</li>
+            <li>加强了学校学术日历与体育活动安排之间的协调配合</li>
+            <li>提升了学生参与度，使活动架构更加清晰规范</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BIBA -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">Deputy Head of Student Activities</span>
+            <span class="zh">学生活动副主任</span>
+          </div>
+          <div class="exp-dates">Feb 2023 – Feb 2024</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Beijing International Bilingual Academy (BIBA) &nbsp;·&nbsp; Beijing</span>
+          <span class="zh">北京市第二实验小学远洋分校（BIBA）&nbsp;·&nbsp; 北京</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Directed vendor recruitment, contracting, and quality assurance across K–12</li>
+          <li>Built structured ASA enrollment and evaluation systems</li>
+          <li>Designed summer/winter academic camps and overseas experiential programs</li>
+          <li>Led teacher recruitment and curriculum design for internal camps</li>
+          <li>Developed and coached youth basketball programs at ES &amp; MS level</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>主导全校K-12外部供应商的招募、合同签订及质量监督工作</li>
+          <li>建立规范化的课外活动报名与评估体系</li>
+          <li>策划设计暑期及寒假学术营地以及海外游学项目</li>
+          <li>主导内部营地教师招募工作及课程设计</li>
+          <li>在小学及初中阶段开展青少年篮球项目并担任主教练</li>
+        </ul>
+        <div class="impact-box">
+          <div class="sub-label">
+            <span class="en">Key Impact</span>
+            <span class="zh">主要成果</span>
+          </div>
+          <ul class="exp-list en">
+            <li>Professionalized vendor management system school-wide</li>
+            <li>Created transparent parent communication channels</li>
+            <li>Expanded basketball development pathway from ES through MS</li>
+          </ul>
+          <ul class="exp-list zh">
+            <li>将全校供应商管理体系专业化、规范化</li>
+            <li>建立透明高效的家长沟通渠道</li>
+            <li>拓展了从小学到初中贯通的篮球发展培养路径</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Keystone Activities -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">Student Activities Coordinator</span>
+            <span class="zh">学生活动协调员</span>
+          </div>
+          <div class="exp-dates">2019 – 2022</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Keystone Academy &nbsp;·&nbsp; Beijing</span>
+          <span class="zh">鼎石学校 &nbsp;·&nbsp; 北京</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Directed secondary sports team programming and inter-school tournament participation</li>
+          <li>Organized ISAC / ACAMIS tournament logistics for multiple sports</li>
+          <li>Developed weekend sports initiatives to extend student athletic engagement</li>
+          <li>Oversaw student-led activities framework and evaluation cycles</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>统筹安排初高中运动队训练计划及校际联赛参与工作</li>
+          <li>负责多项运动项目ISAC / ACAMIS联赛的组织协调工作</li>
+          <li>开展周末体育专项活动，延伸学生体育参与时间</li>
+          <li>负责学生自主活动框架的管理与评估周期工作</li>
+        </ul>
+      </div>
+
+      <!-- Keystone EA -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">Executive Assistant — Dean of Faculty &amp; Dean of Curriculum</span>
+            <span class="zh">教务长及课程主任行政助理</span>
+          </div>
+          <div class="exp-dates">2014 – 2019</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Keystone Academy &nbsp;·&nbsp; Beijing</span>
+          <span class="zh">鼎石学校 &nbsp;·&nbsp; 北京</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Coordinated faculty recruitment logistics and recruitment fair participation</li>
+          <li>Managed professional development administration and new faculty orientation</li>
+          <li>Supported curriculum articulation across Primary–Secondary transition</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>统筹教师招聘相关事务及招聘博览会参展工作</li>
+          <li>负责教师专业发展管理及新教师入职引导工作</li>
+          <li>协助推进小学至中学阶段的课程衔接工作</li>
+        </ul>
+      </div>
+
+      <!-- Keystone Basketball -->
+      <div class="exp-entry">
+        <div class="exp-header">
+          <div class="exp-role">
+            <span class="en">Head Basketball Coach — PS / MS / HS</span>
+            <span class="zh">篮球主教练 — 小学 / 初中 / 高中</span>
+          </div>
+          <div class="exp-dates">2014 – 2022</div>
+        </div>
+        <div class="exp-org">
+          <span class="en">Keystone Academy &nbsp;·&nbsp; Beijing &nbsp;<span style="font-style:normal;">(concurrent with above roles)</span></span>
+          <span class="zh">鼎石学校 &nbsp;·&nbsp; 北京 &nbsp;（与上述职位同期担任）</span>
+        </div>
+        <ul class="exp-list en">
+          <li>Founded and developed a vertically aligned, campus-wide basketball program</li>
+          <li>Head Coach: HS &amp; MS Boys; co-ed development coaching at PS level</li>
+          <li>Created the Student Coaches leadership model, empowering older students as peer coaches</li>
+          <li>Designed campus-wide sports culture initiatives</li>
+        </ul>
+        <ul class="exp-list zh">
+          <li>创立并发展全校一体化、纵向贯通的篮球项目体系</li>
+          <li>担任初高中男子篮球队主教练，并承担小学阶段混合性别启蒙训练</li>
+          <li>创立"学生教练"领导力培养模式，赋能高年级学生担任同伴小教练</li>
+          <li>策划实施全校体育文化建设系列活动</li>
+        </ul>
+        <div class="impact-box">
+          <div class="sub-label">
+            <span class="en">Key Impact</span>
+            <span class="zh">主要成果</span>
+          </div>
+          <ul class="exp-list en">
+            <li>Built a fully vertically aligned basketball program from scratch across 8 years</li>
+            <li>Developed student leadership through a peer coaching model still referenced today</li>
+          </ul>
+          <ul class="exp-list zh">
+            <li>历时8年从零构建了全面的纵向贯通篮球培训体系</li>
+            <li>通过同伴教练模式培养了大批学生领导者，该模式至今仍被参考沿用</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Earlier Career -->
+      <div class="exp-entry" style="border-bottom:none;margin-bottom:0;">
+        <h3 style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;">
+          <span class="en">Earlier Career</span>
+          <span class="zh">早期职业经历</span>
+        </h3>
+        <div class="early-career">
+          <p class="en">
+            Basketball Manager — Sports Beijing &nbsp;(2010–2017)<br>
+            Chinese Secretary — Embassy of Slovenia, Beijing &nbsp;(2012–2014)<br>
+            Project Assistant — GIZ CSR Project, Beijing &nbsp;(2010–2012)<br>
+            Administrative Assistant — Ambow Education, Beijing &nbsp;(2009–2010)
+          </p>
+          <p class="zh">
+            篮球业务经理 — Sports Beijing 北京 &nbsp;（2010–2017）<br>
+            中文秘书 — 斯洛文尼亚驻华大使馆 北京 &nbsp;（2012–2014）<br>
+            项目助理 — 德国国际合作机构（GIZ）企业社会责任项目 &nbsp;（2010–2012）<br>
+            行政助理 — 安博教育 北京 &nbsp;（2009–2010）
+          </p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="cv-footer">
+    <p>Allen Chen &nbsp;/&nbsp; 陈佳瑜 &nbsp;·&nbsp; allenchen_ac@qq.com &nbsp;·&nbsp; +86 158 1137 6447 &nbsp;·&nbsp; Beijing 北京</p>
+  </footer>
+
+</div><!-- end .page -->
+
+<script>
+  function setLang(lang) {
+    document.getElementById('cv-root').setAttribute('lang', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  }
+</script>
 </body>
 </html>
