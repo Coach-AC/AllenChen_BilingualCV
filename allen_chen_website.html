@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Allen Chen — Educator · Coach · Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:   #0d1b2a;
+    --navy2:  #152536;
+    --navy3:  #1e3450;
+    --gold:   #c9a84c;
+    --gold2:  #e8c96a;
+    --cream:  #f5f0e8;
+    --white:  #ffffff;
+    --muted:  #8a9bb0;
+    --border: rgba(201,168,76,0.2);
+    --card:   rgba(255,255,255,0.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(13,27,42,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold2); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 7rem 4rem 4rem;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(21,37,54,0.8) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 2.5rem; height: 1px; background: var(--gold);
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--gold); font-style: italic; }
+  .hero-roles {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .role-tag {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--navy);
+    background: var(--gold); padding: 0.35rem 0.9rem;
+    border-radius: 2px;
+  }
+  .role-tag.outline {
+    background: transparent; color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .hero-bio {
+    font-size: 1.05rem; color: rgba(245,240,232,0.75);
+    max-width: 520px; margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 0.85rem 2rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none; border-radius: 2px;
+    transition: all 0.25s; cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    border: 1px solid rgba(245,240,232,0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Hero photo */
+  .hero-photo-wrap {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-photo-frame {
+    width: min(420px, 90%);
+    aspect-ratio: 3/4;
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    background: var(--navy3);
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .hero-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: 54% 42%; display: block;
+    opacity: 0.9;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; color: var(--muted); font-size: 0.85rem; text-align: center;
+    padding: 2rem;
+  }
+  .photo-placeholder svg { opacity: 0.3; }
+  .photo-placeholder span { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; opacity: 0.6; }
+  .hero-corner-deco {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 5rem; height: 5rem;
+    border: 2px solid var(--gold); opacity: 0.4;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    padding: 2rem 3rem;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); letter-spacing: 0.15em;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; color: var(--white);
+  }
+  .section-line {
+    flex: 1; height: 1px; background: var(--border); margin-bottom: 0.3rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: rgba(245,240,232,0.8); margin-bottom: 1.2rem; font-size: 1.02rem;
+  }
+  .about-photo-col { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-photo {
+    aspect-ratio: 4/3; background: var(--navy3);
+    border: 1px solid var(--border); overflow: hidden; position: relative;
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-photo img.photo-keystone { object-position: 50% 48%; }
+  .about-photo-sm {
+    aspect-ratio: 16/9; background: var(--navy3);
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .about-photo-sm img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-photo-sm img.photo-daystar { object-position: 50% 46%; }
+
+  /* ── COMPETENCIES ── */
+  .comp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .comp-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .comp-card:hover {
+    border-color: rgba(201,168,76,0.5); transform: translateY(-3px);
+  }
+  .comp-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .comp-card:hover::before { opacity: 1; }
+  .comp-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .comp-title {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    font-weight: 700; color: var(--white); margin-bottom: 0.8rem;
+  }
+  .comp-list { list-style: none; }
+  .comp-list li {
+    font-size: 0.88rem; color: var(--muted);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .comp-list li::before { content: '—'; color: var(--gold); font-size: 0.75rem; }
+
+  /* ── EXPERIENCE ── */
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .exp-item {
+    padding-left: 2.5rem; margin-bottom: 3rem; position: relative;
+  }
+  .exp-item::before {
+    content: ''; position: absolute; left: -4px; top: 0.5rem;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--navy);
+  }
+  .exp-meta {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .exp-date {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); letter-spacing: 0.1em;
+  }
+  .exp-tag {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; background: rgba(201,168,76,0.15);
+    color: var(--gold); padding: 0.2rem 0.7rem; border-radius: 2px;
+  }
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .exp-org { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .exp-bullets { list-style: none; margin-bottom: 1rem; }
+  .exp-bullets li {
+    font-size: 0.92rem; color: rgba(245,240,232,0.72);
+    padding: 0.25rem 0; padding-left: 1.2rem; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700;
+  }
+  .exp-impact {
+    background: rgba(201,168,76,0.07); border-left: 2px solid var(--gold);
+    padding: 0.8rem 1.2rem; margin-top: 0.8rem;
+  }
+  .exp-impact-label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .exp-impact p {
+    font-size: 0.88rem; color: rgba(245,240,232,0.75); font-style: italic;
+  }
+
+  /* two-col layout for experience section */
+  .exp-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+
+  /* ── BASKETBALL ── */
+  .bball-section { background: var(--navy2); }
+  .bball-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .bball-photo-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .bball-photo {
+    background: var(--navy3); border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .bball-photo:first-child {
+    grid-column: span 2; aspect-ratio: 16/7;
+  }
+  .bball-photo:not(:first-child) { aspect-ratio: 4/3; }
+  .bball-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bball-photo img.photo-panthers-tournament { object-position: 50% 48%; }
+  .bball-photo img.photo-asa { object-position: 50% 46%; }
+  .bball-photo img.photo-panthers { object-position: 50% 45%; }
+
+  .bball-highlights { display: flex; flex-direction: column; gap: 1.2rem; }
+  .bball-hl {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.2rem; border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .bball-hl:hover { border-color: rgba(201,168,76,0.4); }
+  .bball-hl-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .bball-hl-title {
+    font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem;
+  }
+  .bball-hl-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── CERTIFICATIONS / EDUCATION ── */
+  .cred-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .cred-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 1.8rem; display: flex; gap: 1.2rem; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cred-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+  .cred-icon {
+    width: 3rem; height: 3rem; background: rgba(201,168,76,0.12);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .cred-title { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+  .cred-sub { font-size: 0.82rem; color: var(--muted); }
+  .cred-year {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); margin-top: 0.4rem;
+  }
+
+  /* ── LINKS / CONNECT ── */
+  .connect-section { background: var(--navy3); }
+  .links-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  .link-card {
+    border: 1px solid var(--border); padding: 2rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .link-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .link-card-icon { font-size: 2rem; }
+  .link-card-title { font-size: 1rem; font-weight: 600; color: var(--white); }
+  .link-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .link-card-url {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); margin-top: auto;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .link-card-url::after { content: '→'; }
+
+  .contact-row {
+    display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;
+    padding: 2rem; border: 1px solid var(--border);
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.9rem; color: rgba(245,240,232,0.8);
+  }
+  .contact-item a { color: var(--gold); text-decoration: none; }
+  .contact-item a:hover { text-decoration: underline; }
+  .contact-sep { color: var(--border); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1rem;
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.25s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in:nth-child(4) { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .hero-photo-frame { aspect-ratio: 4/3; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 1.5rem 1.8rem; }
+    .stat:nth-child(2) { border-right: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .bball-grid, .exp-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+    .comp-grid { grid-template-columns: 1fr 1fr; }
+    .links-grid { grid-template-columns: 1fr; }
+    .cred-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    .bball-photo-grid { grid-template-columns: 1fr; }
+    .bball-photo:first-child { grid-column: span 1; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Allen Chen</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#basketball">Basketball</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow fade-in">Beijing, China · International Education</div>
+    <h1 class="hero-name fade-in">Allen <span>Chen</span></h1>
+    <div class="hero-roles fade-in">
+      <span class="role-tag">PE Teacher</span>
+      <span class="role-tag outline">Athletic Director</span>
+      <span class="role-tag outline">Head Basketball Coach</span>
+      <span class="role-tag outline">Club Manager</span>
+    </div>
+    <p class="hero-bio fade-in">
+      Dynamic international school educator and basketball professional with 10+ years building athletic programs, coaching youth athletes, and leading student activities across Beijing's top international schools.
+    </p>
+    <div class="hero-cta fade-in">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#connect" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-photo-wrap fade-in">
+    <div class="hero-photo-frame">
+      <img src="Allen_Profile.jpg" alt="Allen Chen professional headshot" fetchpriority="high" decoding="async" />
+    </div>
+    <div class="hero-corner-deco"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Years Int'l Education</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Years Coaching Basketball</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">7+</div>
+    <div class="stat-label">Years Running Panthers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">K–12</div>
+    <div class="stat-label">Full Program Scope</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a Beijing-based international school educator with a decade-plus career spanning MYP Physical &amp; Health Education, K–12 Athletic Administration, and large-scale Student Activities leadership. My work sits at the intersection of sport, education, and community — and I'm passionate about building environments where young athletes thrive.
+        </p>
+        <p>
+          From founding vertically aligned basketball programs at Keystone Academy to directing K–12 athletics and ASA systems at Haidian Kaiwen, I've consistently taken on roles that require both strategic vision and hands-on execution. I'm equally comfortable and capable of coaching a varsity team program, negotiating vendor contracts, or designing an inquiry-based PHE unit.
+        </p>
+        <p>
+          Outside of school, I lead Panthers Basketball Academy — one of Beijing's most active youth basketball communities — managing leagues, camps, invitationals, and school partnerships year-round. I'm also a father of two boys, which keeps me grounded in what really matters in youth development.
+        </p>
+       
+      </div>
+      <div class="about-photo-col">
+        <div class="about-photo">
+          <img class="photo-keystone" src="Keystone 3.jpg" alt="Allen Chen coaching students at Keystone Academy" loading="lazy" decoding="async" />
+        </div>
+        <div class="about-photo-sm">
+          <img class="photo-daystar" src="Daystar Girls 1.JPG" alt="Daystar girls basketball team with Allen Chen" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies" style="background:var(--navy2); padding-top:0; padding-bottom:5rem;">
+  <div class="section-inner">
+    <div class="section-header" style="padding-top:5rem;">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Core Competencies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-icon">🏫</div>
+        <div class="comp-title">Teaching &amp; Curriculum</div>
+        <ul class="comp-list">
+          <li>MYP PHE Curriculum &amp; Assessment</li>
+          <li>Inquiry-based unit design</li>
+          <li>Differentiated instruction</li>
+          <li>IB Learner Profile integration</li>
+          <li>Student goal-setting &amp; reflection</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">🏆</div>
+        <div class="comp-title">Athletic Leadership</div>
+        <ul class="comp-list">
+          <li>K–12 Athletic Department Direction</li>
+          <li>ISAC / ACAMIS tournament ops</li>
+          <li>Coaching staff supervision</li>
+          <li>Safeguarding compliance</li>
+          <li>Seasonal planning &amp; evaluation</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">📋</div>
+        <div class="comp-title">Activities Administration</div>
+        <ul class="comp-list">
+          <li>Full K–12 ASA ecosystem management</li>
+          <li>Vendor recruitment &amp; contracting</li>
+          <li>Registration &amp; comms systems</li>
+          <li>Experiential &amp; camp programming</li>
+          <li>Cross-divisional alignment</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">🏀</div>
+        <div class="comp-title">Basketball Development</div>
+        <ul class="comp-list">
+          <li>Youth athlete development (8–18)</li>
+          <li>PS / MS / HS varsity coaching</li>
+          <li>Skill progression frameworks</li>
+          <li>Tournament preparation</li>
+          <li>Student coach leadership models</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">🤝</div>
+        <div class="comp-title">School &amp; Community</div>
+        <ul class="comp-list">
+          <li>Parent communication pipelines</li>
+          <li>Risk management</li>
+          <li>Student leadership development</li>
+          <li>Bilingual CN/EN outreach</li>
+          <li>Stakeholder relationship management</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <div class="comp-icon">⚙️</div>
+        <div class="comp-title">Club Operations</div>
+        <ul class="comp-list">
+          <li>League &amp; tournament planning</li>
+          <li>Staff &amp; referee coordination</li>
+          <li>Camp design &amp; enrollment</li>
+          <li>Budget &amp; revenue reporting</li>
+          <li>Community marketing &amp; WeChat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="exp-cols">
+      <!-- LEFT COLUMN -->
+      <div class="exp-timeline">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">Aug 2025 – Present</span>
+            <span class="exp-tag">Teaching</span>
+          </div>
+          <div class="exp-title">MYP PHE Teacher</div>
+          <div class="exp-org">Daystar Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>MYP-aligned PHE curriculum — physical literacy, fitness, SEL</li>
+            <li>Inquiry-based units with skill progression &amp; student goal-setting</li>
+            <li>Differentiated instruction across mixed-ability groups</li>
+            <li>Aligned assessments with MYP criteria &amp; IB Learner Profile</li>
+          </ul>
+          <div class="exp-impact">
+            <div class="exp-impact-label">Key Impact</div>
+            <p>Strengthened MS–HS athletic pathway alignment; enhanced student ownership in skill development</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">Feb 2024 – Jul 2025</span>
+            <span class="exp-tag">AD · ASA · PE</span>
+          </div>
+          <div class="exp-title">Athletic Director · ASA Coordinator · PE Teacher</div>
+          <div class="exp-org">Haidian Kaiwen Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>Directed K–12 athletics: all Primary, MS &amp; HS teams</li>
+            <li>Structured ISAC / ACAMIS competition pathways</li>
+            <li>Supervised coaching staff; ensured safeguarding compliance</li>
+            <li>Managed full K–12 ASA ecosystem: vendors, faculty, clubs</li>
+            <li>Built registration systems and parent communication pipelines</li>
+            <li>Delivered PE instruction alongside full AD responsibilities</li>
+          </ul>
+          <div class="exp-impact">
+            <div class="exp-impact-label">Key Impact</div>
+            <p>Streamlined ASA across all divisions · Strengthened academic–athletics alignment · Increased student participation</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">Feb 2023 – Feb 2024</span>
+            <span class="exp-tag">Student Activities</span>
+          </div>
+          <div class="exp-title">Deputy Head of Student Activities</div>
+          <div class="exp-org">Beijing International Bilingual Academy (BIBA)</div>
+          <ul class="exp-bullets">
+            <li>Directed vendor recruitment, contracting &amp; QA across K–12</li>
+            <li>Built structured ASA enrollment &amp; evaluation systems</li>
+            <li>Designed academic camps and overseas experiential programs</li>
+            <li>Developed &amp; coached youth basketball at ES &amp; MS level</li>
+          </ul>
+          <div class="exp-impact">
+            <div class="exp-impact-label">Key Impact</div>
+            <p>Professionalized vendor management · Created transparent parent comms · Expanded basketball pathway ES→MS</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="exp-timeline">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">2019 – 2022</span>
+            <span class="exp-tag">Activities</span>
+          </div>
+          <div class="exp-title">Student Activities Coordinator</div>
+          <div class="exp-org">Keystone Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>Directed secondary sports teams &amp; inter-school tournament participation</li>
+            <li>Organized ISAC / ACAMIS tournament logistics for multiple sports</li>
+            <li>Developed weekend sports initiatives</li>
+            <li>Oversaw student-led activities framework and evaluation cycles</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">2014 – 2022</span>
+            <span class="exp-tag">Coaching</span>
+          </div>
+          <div class="exp-title">Head Basketball Coach — PS / MS / HS</div>
+          <div class="exp-org">Keystone Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>Founded &amp; developed a vertically aligned, campus-wide basketball program</li>
+            <li>Head Coach: HS &amp; MS Boys; co-ed development at PS level</li>
+            <li>Created the Student Coaches leadership model — peer coaching</li>
+            <li>Designed campus-wide sports culture initiatives</li>
+          </ul>
+          <div class="exp-impact">
+            <div class="exp-impact-label">Key Impact</div>
+            <p>Built a fully vertically aligned program from scratch over 8 years; peer coaching model still referenced today</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">2014 – 2019</span>
+            <span class="exp-tag">Admin</span>
+          </div>
+          <div class="exp-title">Executive Assistant — Dean of Faculty &amp; Curriculum</div>
+          <div class="exp-org">Keystone Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>Coordinated faculty recruitment logistics and fair participation</li>
+            <li>Managed PD administration and new faculty orientation</li>
+            <li>Supported curriculum articulation across Primary–Secondary</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-date">2018 – Present</span>
+            <span class="exp-tag">Club</span>
+          </div>
+          <div class="exp-title">Club Manager &amp; Head of Programs</div>
+          <div class="exp-org">Panthers Basketball Academy · Beijing</div>
+          <ul class="exp-bullets">
+            <li>Leads all club operations: leagues, tournaments, camps, school partnerships</li>
+            <li>Designed &amp; operates the Panthers DBL — structured fee-paying youth league</li>
+            <li>Manages PS &amp; MS Invitationals and HS playoff league</li>
+            <li>Oversees staff, court ops, referee assignments &amp; safety protocols</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASKETBALL -->
+<section id="basketball" class="bball-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Basketball Expertise</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="bball-grid">
+      <div>
+        <div class="bball-photo-grid">
+          <div class="bball-photo">
+            <img class="photo-panthers-tournament" src="Panthers_tournament.JPG" alt="Panthers Basketball Academy tournament team photo" loading="lazy" decoding="async" />
+          </div>
+          <div class="bball-photo">
+            <img class="photo-asa" src="ASA.JPG" alt="Students participating in a basketball ASA session" loading="lazy" decoding="async" />
+          </div>
+          <div class="bball-photo">
+            <img class="photo-panthers" src="Panthers 1.JPG" alt="Panthers Basketball Academy players during training" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+
+      <div class="bball-highlights">
+        <div class="bball-hl">
+          <div class="bball-hl-icon">🏅</div>
+          <div>
+            <div class="bball-hl-title">15+ Years Youth Coaching</div>
+            <div class="bball-hl-text">Coached ages 8–18 across PS, MS, and HS Varsity levels. CBA Middle-Level Coach certified (2016). Developed players from introductory fundamentals through to national and international competition.</div>
+          </div>
+        </div>
+        <div class="bball-hl">
+          <div class="bball-hl-icon">🦁</div>
+          <div>
+            <div class="bball-hl-title">Panthers Basketball Academy</div>
+            <div class="bball-hl-text">Club Manager and Head Coach since 2018. Operates the Panthers DBL, PS &amp; MS Invitationals, HS playoff league, and year-round holiday camps. One of Beijing's most active youth basketball communities.</div>
+          </div>
+        </div>
+        <div class="bball-hl">
+          <div class="bball-hl-icon">🌏</div>
+          <div>
+            <div class="bball-hl-title">International Tournament Experience</div>
+            <div class="bball-hl-text">Led teams to multi-country school tournaments across Asia with full logistics management, travel coordination, and competitive preparation. Also hosted Panthers Invitationals for PS, MS, and HS levels.</div>
+          </div>
+        </div>
+        <div class="bball-hl">
+          <div class="bball-hl-icon">🏫</div>
+          <div>
+            <div class="bball-hl-title">3 School Partnership Programs Delivered</div>
+            <div class="bball-hl-text">Designed and delivered curriculum-aligned ASA basketball programs for Daystar Academy, Haidian Kaiwen, BIBA, and Keystone — integrating school goals with professional club coaching quality.</div>
+          </div>
+        </div>
+        <div class="bball-hl">
+          <div class="bball-hl-icon">🎓</div>
+          <div>
+            <div class="bball-hl-title">Student Coach Leadership Model</div>
+            <div class="bball-hl-text">Created the peer coaching model at Keystone Academy — empowering older students as coaches for younger players. A student leadership approach still referenced by the school today.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Education &amp; Credentials</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">📜</div>
+        <div>
+          <div class="cred-title">IB MYP PHE – Category 1</div>
+          <div class="cred-sub">IB Professional Development</div>
+          <div class="cred-year">2026</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🏀</div>
+        <div>
+          <div class="cred-title">CBA Coach Certification — Middle Level</div>
+          <div class="cred-sub">Chinese Basketball Association</div>
+          <div class="cred-year">2016</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🧑‍🏫</div>
+        <div>
+          <div class="cred-title">Chinese Teaching Certificate — Primary PE</div>
+          <div class="cred-sub">Ministry of Education, China</div>
+          <div class="cred-year">2022</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🌐</div>
+        <div>
+          <div class="cred-title">Business Language Translation</div>
+          <div class="cred-sub">Chinese–English</div>
+          <div class="cred-year">2008</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🎓</div>
+        <div>
+          <div class="cred-title">BSc Applied Physics</div>
+          <div class="cred-sub">Minzu University of China · Beijing</div>
+          <div class="cred-year">2009</div>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🩺</div>
+        <div>
+          <div class="cred-title">First Aid &amp; CPR Certified</div>
+          <div class="cred-sub">Active Certification</div>
+          <div class="cred-year">Current</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div style="margin-top:3rem;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--white); margin-bottom:1.5rem;">Languages</h3>
+      <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:200px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <span style="font-size:0.9rem; color:var(--cream);">Mandarin Chinese</span>
+            <span style="font-size:0.8rem; color:var(--gold);">Native</span>
+          </div>
+          <div style="height:3px; background:var(--navy3); border-radius:2px; overflow:hidden;">
+            <div style="width:100%; height:100%; background:var(--gold);"></div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:200px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <span style="font-size:0.9rem; color:var(--cream);">English</span>
+            <span style="font-size:0.8rem; color:var(--gold);">Professional</span>
+          </div>
+          <div style="height:3px; background:var(--navy3); border-radius:2px; overflow:hidden;">
+            <div style="width:88%; height:100%; background:var(--gold);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect" class="connect-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Connect &amp; Links</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="links-grid">
+      <a href="https://www.linkedin.com/in/allen-chen-coachforlife/" target="_blank" rel="noopener" class="link-card">
+        <div class="link-card-icon">💼</div>
+        <div class="link-card-title">LinkedIn Profile</div>
+        <div class="link-card-desc">Professional network, endorsements, and full career history.</div>
+        <div class="link-card-url">linkedin.com/in/allen-chen-coachforlife</div>
+      </a>
+      <!-- Search Associates: replace href with actual URL -->
+      <a href="YOUR_SEARCH_ASSOCIATES_URL" target="_blank" class="link-card">
+        <div class="link-card-icon">🔍</div>
+        <div class="link-card-title">Search Associates</div>
+        <div class="link-card-desc">International school recruitment profile and references.</div>
+        <div class="link-card-url">searchassociates.com</div>
+      </a>
+      <!-- Download CV -->
+      <a href="Allen_Chen___CV.pdf" download class="link-card">
+        <div class="link-card-icon">📄</div>
+        <div class="link-card-title">Download CV</div>
+        <div class="link-card-desc">Full curriculum vitae and basketball expertise document in PDF format.</div>
+        <div class="link-card-url">Download PDF</div>
+      </a>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-item">
+        <span>📍</span> Beijing, China
+      </div>
+      <span class="contact-sep">|</span>
+      <div class="contact-item">
+        <span>📞</span>
+        <a href="tel:+8615811376447">+86 158 1137 6447</a>
+      </div>
+      <span class="contact-sep">|</span>
+      <div class="contact-item">
+        <span>✉️</span>
+        <a href="mailto:allenchen_ac@qq.com">allenchen_ac@qq.com</a>
+      </div>
+      <span class="contact-sep">|</span>
+      <div class="contact-item">
+        <span>🗣️</span> Mandarin (Native) · English (Professional)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Allen Chen</span>
+  <span class="footer-copy">PE Teacher · Athletic Director · Basketball Coach · Beijing, China</span>
+  <span class="footer-copy" style="font-size:0.72rem; opacity:0.5;">References available upon request</span>
+</footer>
+
+<script>
+  // Intersection Observer for scroll-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.comp-card, .exp-item, .bball-hl, .cred-card, .link-card, .stat').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
